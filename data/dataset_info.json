@@ -1,0 +1,27 @@
+{
+  "dataset_name": "Cybersecurity Multi-Source URL Benchmark",
+  "dataset_filename": "raw_urls_dataset.csv",
+  "source": "Tranco Top 1M, PhishTank Verified, URLhaus (abuse.ch), OpenPhish Live Feed",
+  "total_records": 30596,
+  "target_column": "label",
+  "classes": {
+    "0": "Legitimate / Benign",
+    "1": "Malicious / Phishing"
+  },
+  "class_distribution": {
+    "0": 15300,
+    "1": 15296
+  },
+  "class_percentage": {
+    "0": 50.01,
+    "1": 49.99
+  },
+  "missing_values": 0,
+  "duplicate_records": 0,
+  "sources": {
+    "Tranco_Top_Legitimate": 15300,
+    "PhishTank_Verified": 9998,
+    "URLhaus_Malware": 5000,
+    "OpenPhish_Live": 298
+  }
+}

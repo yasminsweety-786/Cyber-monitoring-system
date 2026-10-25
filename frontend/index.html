@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML-Based Intelligent Cyber Monitoring System</title>
+  <meta name="description" content="State-of-the-art machine learning cyber threat detection system for website URL risk assessment, SHAP explainability, and proactive defense recommendations.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-logo-glow">🛡️</div>
+      <div>
+        <span class="brand-title">CYBERGUARD ML</span>
+        <span class="brand-badge">Intelligence Core</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab-btn active" data-tab="scanner" id="tab-nav-scanner">
+        <span>🔍</span> Live Scanner
+      </button>
+      <button class="nav-tab-btn" data-tab="history" id="tab-nav-history">
+        <span>📋</span> Scan History
+      </button>
+      <button class="nav-tab-btn" data-tab="model-info" id="tab-nav-model-info">
+        <span>📊</span> Model Metrics & Intelligence
+      </button>
+      <button class="nav-tab-btn" data-tab="architecture" id="tab-nav-architecture">
+        <span>⚙️</span> System Architecture
+      </button>
+    </nav>
+
+    <!-- Health Telemetry Indicator -->
+    <div class="system-status-indicator">
+      <span class="status-dot" id="system-status-dot"></span>
+      <span id="system-status-text">AI Engine Online</span>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+
+    <!-- =========================================================================
+         TAB 1: LIVE SCANNER (CORE WORKFLOW)
+         ========================================================================= -->
+    <section class="tab-pane active" id="tab-scanner">
+      
+      <div class="hero-scanner-section">
+        <h1 class="hero-title">
+          ML-Based Intelligent <span class="glow-text">Cyber Monitoring</span> System
+        </h1>
+        <p class="hero-subtitle">
+          Real-time probabilistic URL threat assessment powered by trained XGBoost decision trees, SHAP local explainability, and multi-vector lexical feature extraction.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="url-search-wrapper">
+          <span class="search-icon-left">🌐</span>
+          <input 
+            type="text" 
+            id="url-input" 
+            class="search-input-box" 
+            placeholder="Enter full website URL to analyze (e.g., https://secure-bank.example.com/login)..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button id="scan-btn" class="scan-action-btn">
+            <span>⚡</span> Scan URL
+          </button>
+        </div>
+
+        <!-- Quick Sample Chips for Demonstration -->
+        <div class="quick-samples">
+          <span class="quick-sample-label">Test Samples:</span>
+          <button class="sample-chip" data-url="https://en.wikipedia.org/wiki/Computer_security">
+            ✓ Benign (Wikipedia)
+          </button>
+          <button class="sample-chip" data-url="http://paypal.com.account-update.xyz/login.php?user=admin&token=928a">
+            ⚠ Phishing Deception (Spoofed Brand)
+          </button>
+          <button class="sample-chip" data-url="http://192.168.1.105:8080/admin/index.html">
+            ⚠ Raw IP Host & Port
+          </button>
+          <button class="sample-chip" data-url="https://docs.python.org/3/library/urllib.parse.html">
+            ✓ Academic / Docs
+          </button>
+        </div>
+
+        <!-- Safe Network Probe Toggle -->
+        <div>
+          <label class="network-probe-toggle" for="network-probe-checkbox">
+            <input type="checkbox" id="network-probe-checkbox">
+            <span>Enable Safe HTTP Header & Redirect Probe (Isolated 2.5s Timeout)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pipeline Execution Animated State -->
+      <div class="glass-card pipeline-progress-card" id="pipeline-progress">
+        <div style="font-weight: 700; color: var(--accent-cyan); font-size: 0.95rem;">
+          Executing Cyber Threat Analysis Pipeline...
+        </div>
+        <div class="pipeline-steps">
+          <div class="pipeline-step" id="step-normalize">
+            <div class="step-circle">1</div>
+            <span>URL Normalization</span>
+          </div>
+          <div class="pipeline-step" id="step-extract">
+            <div class="step-circle">2</div>
+            <span>Feature Extraction</span>
+          </div>
+          <div class="pipeline-step" id="step-ml">
+            <div class="step-circle">3</div>
+            <span>XGBoost Inference</span>
+          </div>
+          <div class="pipeline-step" id="step-explain">
+            <div class="step-circle">4</div>
+            <span>SHAP Explainability</span>
+          </div>
+          <div class="pipeline-step" id="step-verdict">
+            <div class="step-circle">5</div>
+            <span>Threat Verdict</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scan Result Dashboard Card -->
+      <div class="result-container" id="scan-result">
+        <div class="result-grid">
+          
+          <!-- Risk Verdict Card (Gauge + Score) -->
+          <div class="glass-card risk-verdict-card">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em;">
+              Threat Probability Score
+            </span>
+            
+            <div class="gauge-wrapper">
+              <svg class="gauge-svg" viewBox="0 0 200 200">
+                <circle class="gauge-bg" cx="100" cy="100" r="80"></circle>
+                <circle class="gauge-fill" id="gauge-fill-circle" cx="100" cy="100" r="80"></circle>
+              </svg>
+              <div class="gauge-center-text">
+                <div class="gauge-score" id="gauge-score-val">0</div>
+                <div class="gauge-score-label">Risk Index / 100</div>
+              </div>
+            </div>
+
+            <div class="risk-level-badge low-risk" id="result-risk-badge">
+              LOW RISK
+            </div>
+
+            <div class="model-meta-strip">
+              <div class="meta-item">
+                <span class="meta-label">ML Prob</span>
+                <span class="meta-val" id="meta-prob-val">0.0%</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Confidence</span>
+                <span class="meta-val" id="meta-conf-val">0.0%</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Latency</span>
+                <span class="meta-val" id="meta-time-val">0 ms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis & Explainability Details Panel -->
+          <div class="glass-card analysis-details-panel">
+            
+            <div class="panel-header">
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
+                  Analyzed Resource
+                </span>
+                <div class="analyzed-url-display" id="result-url-display">
+                  https://example.com
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommendation Alert -->
+            <div class="recommendation-box low" id="recommendation-card">
+              <div class="rec-title">
+                <span>🛡️</span> <span id="rec-title-text">Legitimate Pattern Detected</span>
+              </div>
+              <p class="rec-text" id="rec-desc-text">
+                Low-risk characteristics detected based on structural and domain indicators. Continue with normal browsing precautions.
+              </p>
+            </div>
+
+            <!-- SHAP Contributing Factors Breakdown -->
+            <div class="explainability-section">
+              <div class="section-subhead">
+                <span>Key Contributing Factors (Explainability Layer)</span>
+                <span class="explain-badge" id="explain-method-label">SHAP TreeExplainer</span>
+              </div>
+              
+              <div class="factors-list" id="factors-container">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Extracted Features Inspector -->
+        <div class="glass-card features-inspector-card">
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; justify-content: space-between;">
+            <span>Extracted URL & Domain Features (Registry Inspection)</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">60 Dimensional Feature Space</span>
+          </div>
+          
+          <div class="features-grid" id="features-inspector-grid">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Academic & Ethical Disclaimer Banner -->
+        <div class="disclaimer-banner">
+          <span>⚠️</span>
+          <span>
+            <strong>Academic Disclaimer:</strong> This system provides an ML-based probabilistic risk assessment derived from statistical patterns in labelled cybersecurity benchmark datasets. It does not provide an absolute or legal guarantee of website safety.
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 2: SCAN HISTORY & THREAT FEED
+         ========================================================================= -->
+    <section class="tab-pane" id="tab-history">
+      
+      <!-- History Stat Counter Cards -->
+      <div class="stats-cards-grid">
+        <div class="glass-card stat-card">
+          <div class="stat-icon-wrap" style="background: rgba(59, 130, 246, 0.15); color: var(--accent-blue);">
+            📊
+          </div>
+          <div>
+            <div class="stat-num" id="stat-total-scans">0</div>
+            <div class="stat-name">Total URLs Scanned</div>
+          </div>
+        </div>
+
+        <div class="glass-card stat-card">
+          <div class="stat-icon-wrap" style="background: var(--risk-low-bg); color: var(--risk-low);">
+            ✓
+          </div>
+          <div>
+            <div class="stat-num" id="stat-low-scans">0</div>
+            <div class="stat-name">Low-Risk (Benign)</div>
+          </div>
+        </div>
+
+        <div class="glass-card stat-card">
+          <div class="stat-icon-wrap" style="background: var(--risk-med-bg); color: var(--risk-med);">
+            ⚠
+          </div>
+          <div>
+            <div class="stat-num" id="stat-med-scans">0</div>
+            <div class="stat-name">Medium-Risk (Suspicious)</div>
+          </div>
+        </div>
+
+        <div class="glass-card stat-card">
+          <div class="stat-icon-wrap" style="background: var(--risk-high-bg); color: var(--risk-high);">
+            🚨
+          </div>
+          <div>
+            <div class="stat-num" id="stat-high-scans">0</div>
+            <div class="stat-name">High-Risk (Malicious)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="history-toolbar">
+        <div class="search-filter-group">
+          <input 
+            type="text" 
+            id="history-search" 
+            class="history-search-input" 
+            placeholder="Search scan logs by URL or keyword..."
+          >
+          <select id="history-risk-filter" class="risk-filter-select">
+            <option value="ALL">All Risk Tiers</option>
+            <option value="LOW">Low Risk Only</option>
+            <option value="MEDIUM">Medium Risk Only</option>
+            <option value="HIGH">High Risk Only</option>
+          </select>
+        </div>
+
+        <div>
+          <button id="clear-history-btn" class="btn-secondary btn-danger">
+            <span>🗑️</span> Clear History
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="table-responsive glass-card">
+        <table class="cyber-table">
+          <thead>
+            <tr>
+              <th>Target URL</th>
+              <th>Threat Level</th>
+              <th>Risk Score</th>
+              <th>Key Factors</th>
+              <th>Timestamp</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+
+        <div id="history-empty-state" class="empty-state-box">
+          <div class="empty-icon">📭</div>
+          <div style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary);">No scans recorded yet</div>
+          <p style="font-size: 0.85rem; margin-top: 0.25rem;">Scan your first website URL using the Live Scanner tab to build telemetry.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 3: MODEL METRICS & INTELLIGENCE
+         ========================================================================= -->
+    <section class="tab-pane" id="tab-model-info">
+      
+      <div class="model-intelligence-grid">
+        
+        <!-- Dataset Provenance Card -->
+        <div class="glass-card dataset-provenance-card">
+          <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-cyan);">
+            📁 Benchmark Dataset Provenance
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Assembled from verified legitimate traffic (Tranco Research Top 1M list) and verified active threat repositories (PhishTank, URLhaus abuse.ch, OpenPhish).
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div style="background: rgba(15, 23, 42, 0.7); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Total Labelled Records</div>
+              <div style="font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-primary);" id="ds-total-records">30,596</div>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.7); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Engineered Features</div>
+              <div style="font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-cyan);" id="ds-feat-count">60</div>
+            </div>
+            <div style="background: var(--risk-low-bg); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--risk-low-border);">
+              <div style="font-size: 0.7rem; color: var(--risk-low); text-transform: uppercase;">Benign (Class 0)</div>
+              <div style="font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); color: var(--risk-low);" id="ds-legit-count">15,300</div>
+            </div>
+            <div style="background: var(--risk-high-bg); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--risk-high-border);">
+              <div style="font-size: 0.7rem; color: var(--risk-high); text-transform: uppercase;">Malicious (Class 1)</div>
+              <div style="font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); color: var(--risk-high);" id="ds-phish-count">15,296</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confusion Matrix Visualizer -->
+        <div class="glass-card" style="padding: 1.5rem;">
+          <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--accent-cyan);">
+            🎯 Confusion Matrix (Unseen Test Split)
+          </h2>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            Evaluated on 4,590 unseen stratified test samples (15% held-out test data).
+          </p>
+
+          <div class="matrix-container">
+            <div class="matrix-cell tn">
+              <div class="matrix-label">True Negative (TN) - Correct Benign</div>
+              <div class="matrix-val" id="cm-tn-val" style="color: var(--risk-low);">0</div>
+            </div>
+            <div class="matrix-cell fp">
+              <div class="matrix-label">False Positive (FP) - False Alarm</div>
+              <div class="matrix-val" id="cm-fp-val" style="color: var(--risk-high);">0</div>
+            </div>
+            <div class="matrix-cell fn">
+              <div class="matrix-label">False Negative (FN) - Missed Threat</div>
+              <div class="matrix-val" id="cm-fn-val" style="color: var(--risk-high);">0</div>
+            </div>
+            <div class="matrix-cell tp">
+              <div class="matrix-label">True Positive (TP) - Blocked Attack</div>
+              <div class="matrix-val" id="cm-tp-val" style="color: var(--risk-low);">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Candidate Models Comparison Matrix Table -->
+        <div class="glass-card metrics-comparison-card">
+          <h2 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; justify-content: space-between;">
+            <span>⚔️ Candidate Supervised Classifiers Benchmark</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Stratified 70/15/15 Data Split</span>
+          </h2>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Model Name</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>ROC-AUC</th>
+                <th>False Pos Rate</th>
+                <th>False Neg Rate</th>
+                <th>Train Time</th>
+              </tr>
+            </thead>
+            <tbody id="model-comparison-table-body">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ROC Curve Canvas -->
+        <div class="glass-card" style="padding: 1.5rem;">
+          <h2 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">
+            📈 Receiver Operating Characteristic (ROC Curve)
+          </h2>
+          <div class="chart-container">
+            <canvas id="roc-curve-canvas" style="width:100%; height:100%;"></canvas>
+          </div>
+        </div>
+
+        <!-- Top Feature Importances Canvas -->
+        <div class="glass-card" style="padding: 1.5rem;">
+          <h2 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">
+            🏆 Top 10 Feature Importances (Gini/Information Gain)
+          </h2>
+          <div class="chart-container">
+            <canvas id="feature-importance-canvas" style="width:100%; height:100%;"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 4: SYSTEM ARCHITECTURE & METHODOLOGY
+         ========================================================================= -->
+    <section class="tab-pane" id="tab-architecture">
+      
+      <div class="glass-card architecture-flow-diagram">
+        <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--accent-cyan); text-align: center;">
+          End-to-End Prediction & Explainability Pipeline
+        </h2>
+        <p style="text-align: center; font-size: 0.9rem; color: var(--text-secondary); max-width: 700px; margin: 0.5rem auto 1.5rem;">
+          Strict reproducible ML architecture avoiding data leakage, manual rules, and ungrounded security guarantees.
+        </p>
+
+        <div class="flow-steps-grid">
+          <div class="flow-step-box">
+            <div class="flow-step-num">1</div>
+            <div class="flow-step-title">URL Ingestion</div>
+            <div class="flow-step-desc">Trims, normalizes schemes, validates format safely.</div>
+          </div>
+
+          <div class="flow-step-box">
+            <div class="flow-step-num">2</div>
+            <div class="flow-step-title">Feature Extraction</div>
+            <div class="flow-step-desc">Computes 60 structural, entropy, lexical, & TLD metrics.</div>
+          </div>
+
+          <div class="flow-step-box">
+            <div class="flow-step-num">3</div>
+            <div class="flow-step-title">Preprocessing</div>
+            <div class="flow-step-desc">StandardScaler + Top-K TLD One-Hot Encoder with unknown handling.</div>
+          </div>
+
+          <div class="flow-step-box">
+            <div class="flow-step-num">4</div>
+            <div class="flow-step-title">ML Classifier</div>
+            <div class="flow-step-desc">Trained XGBoost ensemble computes class probability P(Malicious).</div>
+          </div>
+
+          <div class="flow-step-box">
+            <div class="flow-step-num">5</div>
+            <div class="flow-step-title">SHAP Explainability</div>
+            <div class="flow-step-desc">TreeExplainer derives game-theoretic feature attribution.</div>
+          </div>
+
+          <div class="flow-step-box">
+            <div class="flow-step-num">6</div>
+            <div class="flow-step-title">Threat Verdict</div>
+            <div class="flow-step-desc">Calibrated Risk Index (0-100) + Actionable User Guidance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Principles & Guidelines Section -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+        
+        <div class="glass-card" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.75rem;">
+            ⚙️ Core Machine Learning Principles
+          </h3>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; padding-left: 1.25rem;">
+            <li><strong>No Hardcoded Rules:</strong> HTTPS is NOT treated as safe proof; unusual TLDs are NOT automatically labeled malicious.</li>
+            <li><strong>Zero Data Leakage:</strong> Preprocessing pipelines are fit strictly on the training partition (70%) and applied to test and real-time inputs.</li>
+            <li><strong>Multi-Model Rigor:</strong> Logistic Regression, Random Forest, and XGBoost are compared under identical stratified splits.</li>
+            <li><strong>Explainability First:</strong> Predictions are accompanied by mathematical feature attributions explaining <em>why</em> a risk score was assigned.</li>
+          </ul>
+        </div>
+
+        <div class="glass-card" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.75rem;">
+            🔒 Security, Privacy & Ethical Constraints
+          </h3>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; padding-left: 1.25rem;">
+            <li><strong>Zero Code Execution:</strong> URL inspection only performs safe HEAD requests without executing JavaScript or downloading binaries.</li>
+            <li><strong>Strict Timeouts:</strong> All external network probes have an isolated 2.5-second timeout and default to safe offline values.</li>
+            <li><strong>Privacy Preserving:</strong> No user passwords, authentication credentials, or sensitive query strings are permanently stored.</li>
+            <li><strong>Cautious Advisory:</strong> System results are explicitly framed as probabilistic ML risk assessments rather than definitive guarantees.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
